@@ -131,20 +131,114 @@ section{
     padding-bottom: 5px;
     border-bottom: 2px solid transparent;
 }
+#home{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    padding-top: 80px;
+    background: url("img_1.jpg") no-repeat center center/cover;
+    background-attachment: fixed;
+}
+#home::before{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+#home .container{
+    position: relative; /* Ensure content is above overlay */   
+    z-index: 3;
+}
+#menu-toggle{
+    display: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
 
 #navbar a:hover, #navbar a.active{
     color: var(--main-color);
 }
-#home{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    height: 100vh;
-    text-align: center;
-}
 #home h1{
     font-size: 4rem;
     text-align: center;
+    font-weight: bold;
 }
+#home h1 span{
+    color: var(--main-color);
+    font-size: 4.8rem;
+}
+#home p{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+#home p span{
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 2.3rem;
+}
+#about .container{
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+#about img{
+    height: auto;
+    flex: 1 1 300px;
+    border-radius: 10px;
+    box-shadow: 0 0 15px var(--main-color);
+    left: 0;
+    width: 100%;
+    max-width: 400px;
+    transition: transform 0.3s ease;
+    justify-content: flex-start;
+}
+
+@media (max-width: 768px) {
+            #logo { font-size: 1.5rem; }
+
+            #navbar {
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                width: 100%;
+                background-color: rgba(26, 26, 26, 0.95); /* Slightly more opaque */
+                max-height: 0; /* Collapsed by default */
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+            #navbar.active {
+                 max-height: 300px; /* Height when open */
+            }
+
+            #navbar ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+            #navbar ul li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+
+            #menu-toggle {
+                 display: block; /* Show hamburger */
+            }
+
+            #home h1 { font-size: 2.8rem; }
+            #home p { font-size: 1.1rem; }
+            h2 { font-size: 2rem; }
+
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
