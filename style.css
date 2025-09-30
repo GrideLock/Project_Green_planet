@@ -201,6 +201,29 @@ section{
     transition: transform 0.3s ease;
     justify-content: flex-start;
 }
+ img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+#about img:hover{
+    transform: scale(1.05);
+}
+#about .about-item{
+    flex: 2 1 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#about .about-item p{
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 1.5rem;
+}
+#about .about-item, .btn{
+    align-self: flex-start;
+    transform: scale(0.95);
+}
 
 @media (max-width: 768px) {
             #logo { font-size: 1.5rem; }
