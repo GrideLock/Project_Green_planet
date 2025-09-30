@@ -55,6 +55,7 @@
                 signupForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
                     const username = document.getElementById('signup-username').value;
+                    const email = document.getElementById('signup-email').value;
                     const password = document.getElementById('signup-password').value;
                     const messageDiv = document.getElementById('signup-message');
                     messageDiv.textContent = '';
@@ -62,7 +63,7 @@
                         const res = await fetch('http://localhost:3000/signup', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, password })
+                            body: JSON.stringify({ username, email, password })
                         });
                         const data = await res.json();
                         if (res.ok) {
@@ -134,7 +135,7 @@
             if (loginForm) {
                 loginForm.addEventListener('submit', async function(e) {
                     e.preventDefault();
-                    const username = document.getElementById('login-username').value;
+                    const email = document.getElementById('login-email').value;
                     const password = document.getElementById('login-password').value;
                     const messageDiv = document.getElementById('login-message');
                     messageDiv.textContent = '';
@@ -142,14 +143,14 @@
                         const res = await fetch('http://localhost:3000/login', {
                             method: 'POST',
                             headers: { 'Content-Type': 'application/json' },
-                            body: JSON.stringify({ username, password })
+                            body: JSON.stringify({ email, password })
                         });
                         const data = await res.json();
                         if (res.ok) {
                             messageDiv.style.color = 'green';
                             messageDiv.textContent = data.message;
-                            localStorage.setItem('username', username);
-                            showUserNav(username);
+                            localStorage.setItem('username', data.username);
+                            showUserNav(data.username);
                             loginForm.reset();
                         } else {
                             messageDiv.style.color = 'red';
