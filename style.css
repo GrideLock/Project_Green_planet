@@ -1,3 +1,49 @@
+/* Center login and signup forms */
+#login .container, #signup .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+}
+
+#login form, #signup form {
+    background: var(--second-Bg);
+    padding: 2rem 2.5rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.2);
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#login input, #signup input {
+    padding: 0.7rem 1rem;
+    border-radius: 5px;
+    border: 1px solid #444;
+    background: #23233a;
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+#login button, #signup button {
+    margin-top: 1rem;
+}
+
+#login-message, #signup-message {
+    margin-top: 0.5rem;
+    min-height: 1.2em;
+    font-size: 1rem;
+    text-align: center;
+}
 *{
     margin: 0;
     padding: 0;
@@ -111,6 +157,37 @@ section{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#navbar ul {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+#nav-user {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 120px;
+}
+
+#nav-user span {
+    display: flex;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#nav-user .btn {
+    margin: 0 0 0 10px;
+    padding: 6px 16px;
+    font-size: 0.95rem;
+    box-shadow: none;
 }
 #navbar ul{
     list-style: none;
@@ -229,7 +306,47 @@ section{
     align-self: flex-start;
     transform: scale(0.95);
 }
-
+#signup .form-group{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    align-items: center;
+}
+#signpup .form-group label{
+    margin-bottom: 0.5rem;
+    padding: 25px 25px;
+    font-weight: bold;
+}
+.form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: var(--Bg-color); /* Darker inputs */
+            border: 1px solid var(--main-color);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-family: var(--font-family);
+        }
+        .form-group input:focus,
+        .form-group textarea:focus {
+             outline: none;
+             border-color: var(--neon-pink);
+             box-shadow: 0 0 8px var(--neon-pink);
+        }
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        #signup button[type="submit"] {
+            width: 100%;
+            margin-top: 1rem;
+        }
+        #login button[type="submit"] {
+            width: 100%;
+            margin-top: 1rem;
+        }
 @media (max-width: 768px) {
             #logo { font-size: 1.5rem; }
 
