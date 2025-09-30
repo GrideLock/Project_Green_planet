@@ -223,6 +223,7 @@ section{
 }
 #about .about-item h2{
     font-weight: bold;
+    font-size: 2.5rem;
 }
 #about .about-item, .btn{
     align-self: flex-start;
@@ -243,7 +244,7 @@ section{
                 transition: max-height 0.5s ease-in-out;
             }
             #navbar.active {
-                 max-height: 400px; /* Height when open */
+                 max-height: 700px; /* Height when open */
             }
 
             #navbar ul {
@@ -263,11 +264,6 @@ section{
             #home h1 { font-size: 2.8rem; }
             #home p { font-size: 1.1rem; }
             h2 { font-size: 2rem; }
-            h2{
-                width: 80px;
-                font-size: 1.8rem; 
-                margin-bottom: 1.5rem;
-            }
 
             #about .container {
                 flex-direction: column;
