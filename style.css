@@ -9,7 +9,7 @@
 
 #login form, #signup form {
     background: var(--second-Bg);
-    padding: 2rem 2.5rem;
+    padding: 4rem 3.5rem;
     border-radius: 10px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.2);
     width: 100%;
