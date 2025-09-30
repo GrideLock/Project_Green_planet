@@ -264,11 +264,6 @@ section{
             #home h1 { font-size: 2.8rem; }
             #home p { font-size: 1.1rem; }
             h2 { font-size: 2rem; }
-            h2{
-                width: 80px;
-                font-size: 1.8rem; 
-                margin-bottom: 1.5rem;
-            }
 
             #about .container {
                 flex-direction: column;
