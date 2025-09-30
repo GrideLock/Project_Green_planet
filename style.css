@@ -218,7 +218,13 @@ section{
 #about .about-item p{
     font-size: 1.1rem;
     line-height: 1.8;
+    font-weight: 700;
     margin-bottom: 1.5rem;
+}
+#about .about-item h2{
+    text-align: left;
+    margin-bottom: 1.5rem;
+    font-weight: bold;
 }
 #about .about-item, .btn{
     align-self: flex-start;
