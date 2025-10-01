@@ -276,7 +276,6 @@ section{
     width: 100%;
     max-width: 400px;
     transition: transform 0.3s ease;
-    justify-content: flex-start;
 }
  img {
     max-width: 100%;
@@ -302,7 +301,13 @@ section{
     font-weight: bold;
     font-size: 2.5rem;
 }
-#about .about-item, .btn{
+#about .about-item h3 {
+    font-size: 1.5rem;
+    color: var(--main-color);
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+#about .about-item .btn{
     align-self: flex-start;
     transform: scale(0.95);
 }
