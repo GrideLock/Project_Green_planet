@@ -19,34 +19,52 @@
             }
 
             // --- Active Nav Link Highlighting on Scroll ---
-            const sections = document.querySelectorAll('section'); // Select all sections
-            const navLinks = document.querySelectorAll('#navbar a.nav-link');
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('#navbar a');
 
-            const options = {
+            const navOptions = {
                 root: null, // viewport
                 threshold: 0.5, // 50% of section visible
                 rootMargin: "-80px 0px 0px 0px" // Adjust for fixed header height
             };
 
-            const observer = new IntersectionObserver((entries, observer) => {
+            const navObserver = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        navLinks.forEach(link => {
-                            link.classList.remove('active');
-                            // Check if the link's href matches the intersecting section's id
-                            if (link.getAttribute('href') === `#${entry.target.id}`) {
-                                link.classList.add('active');
-                            }
-                        });
+                        const correspondingLink = document.querySelector(`#navbar a[href="#${entry.target.id}"]`);
+                        navLinks.forEach(link => link.classList.remove('active'));
+                        if (correspondingLink) {
+                            correspondingLink.classList.add('active');
+                        }
                     }
                 });
-            }, options);
+            }, navOptions);
 
-            // Observe all section elements found
             sections.forEach(section => {
-                if(section.id) { // Only observe sections that have an ID (relevant for nav)
-                     observer.observe(section);
+                if(section.id) { // Only observe sections that have an ID
+                     navObserver.observe(section);
                 }
+            });
+
+            // --- Scroll Animation for Support Section ---
+            const supportItems = document.querySelectorAll('.support-item');
+
+            const supportObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply a delay based on the item's index
+                        entry.target.style.transitionDelay = `${index * 150}ms`;
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the item is visible
+                rootMargin: '0px 0px -50px 0px' // Start animation a bit before it's fully in view
+            });
+
+            supportItems.forEach(item => {
+                supportObserver.observe(item);
             });
 
             // --- Signup Form Submission ---
@@ -81,55 +99,50 @@
                 });
             }
 
-            // --- Login Form Submission ---
+            // --- Login Form Submission & User State Management ---
             const loginForm = document.getElementById('loginForm');
             const navLogin = document.getElementById('nav-login');
             const navSignup = document.getElementById('nav-signup');
             const navUser = document.getElementById('nav-user');
+            const signupSection = document.getElementById('signup');
+            const loginSection = document.getElementById('login');
 
             function showUserNav(username) {
                 if (navLogin) navLogin.style.display = 'none';
                 if (navSignup) navSignup.style.display = 'none';
+                if (signupSection) signupSection.style.display = 'none';
+                if (loginSection) loginSection.style.display = 'none';
+
                 if (navUser) {
-                    navUser.style.display = '';
-                    navUser.innerHTML = `<span style=\"color:var(--main-color);font-weight:bold;\"><i class='bx bx-user'></i> ${username}</span> <button id=\"logoutBtn\" class=\"btn\" style=\"margin-left:10px;\">Log Out</button>`;
-                    // Hide signup and login sections
-                    const signupSection = document.getElementById('signup');
-                    if (signupSection) signupSection.style.display = 'none';
-                    const loginSection = document.getElementById('login');
-                    if (loginSection) loginSection.style.display = 'none';
-                    // Add logout event
-                    setTimeout(() => {
-                        const logoutBtn = document.getElementById('logoutBtn');
-                        if (logoutBtn) {
-                            logoutBtn.onclick = function() {
-                                localStorage.removeItem('username');
-                                if (navLogin) navLogin.style.display = '';
-                                if (navSignup) navSignup.style.display = '';
-                                if (navUser) navUser.style.display = 'none';
-                                // Show signup and login sections again
-                                const signupSection = document.getElementById('signup');
-                                if (signupSection) signupSection.style.display = '';
-                                const loginSection = document.getElementById('login');
-                                if (loginSection) loginSection.style.display = '';
-                                // Optionally, scroll to home
-                                window.location.hash = '#home';
-                            };
-                        }
-                    }, 100);
+                    navUser.style.display = 'flex'; // Use flex for alignment
+                    navUser.innerHTML = `
+                        <span><i class='bx bx-user'></i> ${username}</span>
+                        <button id="logoutBtn" class="btn">Log Out</button>
+                    `;
+
+                    const logoutBtn = document.getElementById('logoutBtn');
+                    if (logoutBtn) {
+                        logoutBtn.addEventListener('click', () => {
+                            localStorage.removeItem('username');
+                            window.location.reload(); // Reload to reset state
+                        });
+                    }
                 }
             }
 
-            // On page load, check if user is logged in
+            function showGuestNav() {
+                if (navLogin) navLogin.style.display = '';
+                if (navSignup) navSignup.style.display = '';
+                if (navUser) navUser.style.display = 'none';
+                if (signupSection) signupSection.style.display = '';
+                if (loginSection) loginSection.style.display = '';
+            }
+
             const storedUser = localStorage.getItem('username');
             if (storedUser) {
                 showUserNav(storedUser);
             } else {
-                // Show signup and login sections if not logged in
-                const signupSection = document.getElementById('signup');
-                if (signupSection) signupSection.style.display = '';
-                const loginSection = document.getElementById('login');
-                if (loginSection) loginSection.style.display = '';
+                showGuestNav();
             }
 
             if (loginForm) {
@@ -150,8 +163,13 @@
                             messageDiv.style.color = 'green';
                             messageDiv.textContent = data.message;
                             localStorage.setItem('username', data.username);
-                            showUserNav(data.username);
-                            loginForm.reset();
+
+                            setTimeout(() => {
+                                showUserNav(data.username);
+                                loginForm.reset();
+                                window.location.hash = '#home';
+                            }, 1000);
+
                         } else {
                             messageDiv.style.color = 'red';
                             messageDiv.textContent = data.message || 'Login failed.';
