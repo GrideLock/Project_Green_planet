@@ -317,6 +317,15 @@ section{
     gap: 2rem;
     margin-top: 3rem;
 }
+#support .container h2{
+    margin-bottom: 1rem;
+    font-size: 3.5rem;
+}
+#support .container h2 span{
+    color: var(--main-color);
+    font-weight: bold;
+    font-size: 3.8rem;
+}
 
 #support .support-item {
     background: var(--second-Bg);
