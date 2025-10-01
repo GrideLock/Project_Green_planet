@@ -335,6 +335,7 @@ section{
 }
 
 #support .support-item h3 {
+    font-weight: bold;
     color: var(--main-color);
     font-size: 1.4rem;
     margin-bottom: 1rem;
