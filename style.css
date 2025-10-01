@@ -153,12 +153,15 @@ section{
     backdrop-filter: blur(5px);
 }
 
-#header .container{
+
+#header .container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+    gap: 1.5rem;
 }
+
 
 #navbar ul {
     display: flex;
@@ -189,15 +192,7 @@ section{
     font-size: 0.95rem;
     box-shadow: none;
 }
-#navbar ul{
-    list-style: none;
-    display: flex;
-    margin: 0;
-    padding: 0;
-    gap: 25px;
-    justify-content: center;
 
-}
 #navbar li{
     margin-left: 32px;
     font-size: 20px;
@@ -403,44 +398,58 @@ section{
             width: 100%;
             margin-top: 1rem;
         }
+
+@media (max-width: 900px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+    #header .container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+}
+
 @media (max-width: 768px) {
-            #logo { font-size: 1.5rem; }
-
-            #navbar {
-                position: absolute;
-                top: 100%; /* Position below header */
-                left: 0;
-                width: 100%;
-                background-color: rgba(26, 26, 26, 0.95); /* Slightly more opaque */
-                max-height: 0; /* Collapsed by default */
-                overflow: hidden;
-                transition: max-height 0.5s ease-in-out;
-            }
-            #navbar.active {
-                 max-height: 700px; /* Height when open */
-            }
-
-            #navbar ul {
-                flex-direction: column;
-                align-items: center;
-                padding: 20px 0;
-            }
-            #navbar ul li {
-                margin: 10px 0;
-                margin-left: 0;
-            }
-
-            #menu-toggle {
-                 display: block; /* Show hamburger */
-            }
-
-            #home h1 { font-size: 2.8rem; }
-            #home p { font-size: 1.1rem; }
-            h2 { font-size: 2rem; }
-
-            #about .container {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
+    .logo {
+        font-size: 1.3rem;
+    }
+    #header .container {
+        flex-direction: row;
+        gap: 0.5rem;
+    }
+    #navbar {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(26, 26, 26, 0.95);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s ease-in-out;
+        z-index: 999;
+    }
+    #navbar.active {
+        max-height: 700px;
+    }
+    #navbar ul {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 0;
+        gap: 10px;
+    }
+    #navbar ul li {
+        margin: 10px 0;
+        margin-left: 0;
+    }
+    #menu-toggle {
+        display: block;
+    }
+    #home h1 { font-size: 2.2rem; }
+    #home p { font-size: 1rem; }
+    h2 { font-size: 1.5rem; }
+    #about .container {
+        flex-direction: column;
+        text-align: center;
+    }
+}
 
