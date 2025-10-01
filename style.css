@@ -1,3 +1,21 @@
+@media (max-width: 900px) {
+    #home {
+        background-size: cover !important;
+        background-position: center center !important;
+        min-height: 100vh !important;
+        height: 100vh;
+        padding-top: 60px;
+    }
+}
+@media (max-width: 600px) {
+    #home {
+        background-size: cover !important;
+        background-position: center center !important;
+        min-height: 100vh !important;
+        height: 100vh;
+        padding-top: 50px;
+    }
+}
 /* --- Extra Responsive Styles for All Content --- */
 @media (max-width: 900px) {
     #about .container {
