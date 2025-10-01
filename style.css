@@ -552,46 +552,70 @@ section{
 }
 
 @media (max-width: 768px) {
-    .logo {
-        font-size: 1.3rem;
-    }
-    #header .container {
-        flex-direction: row;
-        gap: 0.5rem;
-    }
-    #navbar {
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(26, 26, 26, 0.95);
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease-in-out;
-        z-index: 999;
-    }
-    #navbar.active {
-        max-height: 700px;
-    }
-    #navbar ul {
-        flex-direction: column;
-        align-items: center;
-        padding: 20px 0;
-        gap: 10px;
-    }
-    #navbar ul li {
-        margin: 10px 0;
-        margin-left: 0;
-    }
-    #menu-toggle {
-        display: block;
-    }
-    #home h1 { font-size: 2.2rem; }
-    #home p { font-size: 1rem; }
-    h2 { font-size: 1.5rem; }
-    #about .container {
-        flex-direction: column;
-        text-align: center;
-    }
+            #logo { font-size: 1.5rem; }
+
+            #navbar {
+                position: absolute;
+                top: 100%; /* Position below header */
+                left: 0;
+                width: 100%;
+                background-color: rgba(26, 26, 26, 0.95); /* Slightly more opaque */
+                max-height: 0; /* Collapsed by default */
+                overflow: hidden;
+                transition: max-height 0.5s ease-in-out;
+            }
+            #navbar.active {
+                 max-height: 300px; /* Height when open */
+            }
+
+            #navbar ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 20px 0;
+            }
+            #navbar ul li {
+                margin: 10px 0;
+                margin-left: 0;
+            }
+
+            #menu-toggle {
+                 display: block; /* Show hamburger */
+            }
+
+            #home h1 { font-size: 2.8rem; }
+            #home p { font-size: 1.1rem; }
+            h2 { font-size: 2rem; }
+
+            #about .container {
+                flex-direction: column;
+                text-align: center;
+            }
+            #about .about-image {
+                 max-width: 70%;
+                 margin-bottom: 20px;
+            }
+            #about .about-item {
+                 align-items: center;
+            }
+            #support .support-grid {
+                 grid-template-columns: 1fr;
+                 gap: 1.2rem;
+            }
+            section {
+                 padding: 30px 0;
+                 min-height: unset;
+            }
+            .container {
+                 padding: 0 8px;
+            }
+            #footer .container {
+                 flex-direction: column;
+                 gap: 0.5rem;
+                 text-align: center;
+            }
+            #footer .social-links {
+                 gap: 0.7rem;
+                 font-size: 1.3rem;
+            }
 }
 
