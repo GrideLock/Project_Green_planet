@@ -1,3 +1,102 @@
+/* --- Extra Responsive Styles for All Content --- */
+@media (max-width: 900px) {
+    #about .container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    #about img {
+        max-width: 90vw;
+        margin: 0 auto 1.5rem auto;
+    }
+    #about .about-item {
+        align-items: center;
+    }
+    #support .support-grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    section {
+        padding: 30px 0;
+        min-height: unset;
+    }
+    .container {
+        padding: 0 8px;
+    }
+}
+
+@media (max-width: 600px) {
+    #header {
+        padding: 8px 0;
+    }
+    .logo {
+        font-size: 1.1rem;
+    }
+    #home h1 {
+        font-size: 1.5rem;
+    }
+    #home h1 span {
+        font-size: 2rem;
+    }
+    #home p, #about .about-item p, #support .support-item p {
+        font-size: 0.98rem;
+    }
+    #about img {
+        max-width: 98vw;
+    }
+    #login .container, #signup .container {
+        min-height: 40vh;
+        padding: 0;
+    }
+    #login form, #signup form {
+        padding: 1.2rem 0.5rem;
+        max-width: 98vw;
+    }
+    .btn {
+        padding: 10px 12px;
+        font-size: 0.95rem;
+        margin: 1rem 0.5rem;
+    }
+    #footer .container {
+        flex-direction: column;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    #footer .social-links {
+        gap: 0.7rem;
+        font-size: 1.3rem;
+    }
+}
+/* Footer Social Links Animation */
+#footer .social-links {
+    display: flex;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1.2rem;
+}
+#footer .social-links a {
+    color: var(--text-color);
+    font-size: 2rem;
+    transition: transform 0.3s cubic-bezier(.68,-0.55,.27,1.55), color 0.3s;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 2.7rem;
+    height: 2.7rem;
+    background: transparent;
+    position: relative;
+    overflow: hidden;
+}
+#footer .social-links a:hover {
+    color: var(--main-color);
+    background: rgba(8,203,0,0.08);
+    transform: translateY(-6px) scale(1.15) rotate(-8deg);
+    box-shadow: 0 4px 18px 0 rgba(8,203,0,0.18);
+}
+#footer .social-links a:active {
+    transform: scale(0.95);
+}
 /* Center login and signup forms */
 #login .container, #signup .container {
     display: flex;
