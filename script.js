@@ -5,17 +5,43 @@
             const navbar = document.getElementById('navbar');
 
             if (menuToggle && navbar) {
-                 menuToggle.addEventListener('click', () => {
-                    navbar.classList.toggle('active');
-                 });
-                 // Close menu when a link is clicked (optional)
-                 navbar.querySelectorAll('a').forEach(link => {
-                     link.addEventListener('click', () => {
-                         if (navbar.classList.contains('active')) {
+                // Accessibility: ARIA attributes
+                menuToggle.setAttribute('aria-label', 'Open navigation menu');
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-controls', 'navbar');
+
+                // Toggle menu
+                menuToggle.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const isActive = navbar.classList.toggle('active');
+                    menuToggle.setAttribute('aria-expanded', isActive ? 'true' : 'false');
+                });
+
+                // Close menu when a nav link is clicked
+                navbar.querySelectorAll('a').forEach(link => {
+                    link.addEventListener('click', () => {
+                        if (navbar.classList.contains('active')) {
                             navbar.classList.remove('active');
-                         }
-                     });
-                 });
+                            menuToggle.setAttribute('aria-expanded', 'false');
+                        }
+                    });
+                });
+
+                // Close menu when clicking outside
+                document.addEventListener('click', (e) => {
+                    if (navbar.classList.contains('active') && !navbar.contains(e.target) && e.target !== menuToggle) {
+                        navbar.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
+
+                // Close menu on ESC key
+                document.addEventListener('keydown', (e) => {
+                    if (e.key === 'Escape' && navbar.classList.contains('active')) {
+                        navbar.classList.remove('active');
+                        menuToggle.setAttribute('aria-expanded', 'false');
+                    }
+                });
             }
 
             // --- Active Nav Link Highlighting on Scroll ---
