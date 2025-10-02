@@ -93,6 +93,27 @@
                 supportObserver.observe(item);
             });
 
+            // --- Scroll Animation for Album Section ---
+            const albumItems = document.querySelectorAll('.album-item');
+
+            const albumObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        // Apply a delay based on the item's index
+                        entry.target.style.transitionDelay = `${index * 150}ms`;
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, {
+                threshold: 0.1, // Trigger when 10% of the item is visible
+                rootMargin: '0px 0px -50px 0px' // Start animation a bit before it's fully in view
+            });
+
+            albumItems.forEach(item => {
+                albumObserver.observe(item);
+            });
+
             // --- Signup Form Submission ---
             const signupForm = document.getElementById('signupForm');
             if (signupForm) {
