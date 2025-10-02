@@ -1,3 +1,87 @@
+/* --- FINAL FIX: Use display:none/flex for mobile menu toggle --- */
+@media (max-width: 700px) {
+    #navbar {
+        display: none !important;
+        position: absolute !important;
+        left: 0; right: 0;
+        top: 100%;
+        width: 100vw !important;
+        background: rgba(26,26,26,0.98) !important;
+        z-index: 999;
+        flex-direction: column !important;
+        align-items: center !important;
+        box-shadow: 0 8px 32px 0 rgba(0,0,0,0.18);
+    }
+    #navbar.active {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        overflow-y: auto !important;
+        max-height: 100vh !important;
+    }
+    #navbar ul {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100vw !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        gap: 0.5rem !important;
+        padding: 18px 0 !important;
+    }
+    #navbar ul li {
+        margin: 7px 0 !important;
+        font-size: 1.1rem !important;
+    }
+    #menu-toggle {
+        display: block !important;
+    }
+}
+/* --- FORCE menu-toggle open/close behavior on small screens --- */
+@media (max-width: 700px) {
+    #navbar {
+        max-height: 0 !important;
+        overflow: hidden !important;
+        transition: max-height 0.5s !important;
+        position: absolute !important;
+        left: 0; right: 0;
+        width: 100vw !important;
+        background: rgba(26,26,26,0.98) !important;
+        z-index: 999;
+    }
+    #navbar.active {
+        max-height: 100vh !important;
+        overflow-y: auto !important;
+        transition: max-height 0.5s !important;
+    }
+    #navbar ul {
+        flex-direction: column !important;
+        align-items: center !important;
+        width: 100vw !important;
+        min-width: 0 !important;
+        box-sizing: border-box !important;
+        gap: 0.5rem !important;
+        padding: 18px 0 !important;
+    }
+    #navbar ul li {
+        margin: 7px 0 !important;
+        font-size: 1.1rem !important;
+    }
+    #menu-toggle {
+        display: block !important;
+    }
+}
+/* --- Fix for menu-toggle open/close on small screens --- */
+@media (max-width: 600px) {
+    #navbar {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.5s;
+    }
+    #navbar.active {
+        max-height: 100vh;
+        overflow-y: auto;
+    }
+}
 @media (max-width: 600px) {
     #navbar {
         width: 100vw !important;
@@ -685,7 +769,10 @@ section{
             width: 100%;
             margin-top: 1rem;
         }
-
+        #footer p{
+            font-size: 1.2rem;
+            text-align: right;
+        }
 /* Responsive Styles */
 @media (max-width: 768px) {
             #logo { font-size: 1.5rem; }
